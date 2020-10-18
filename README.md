@@ -66,3 +66,10 @@ Use tf.keras.Sequential to define the model.
 For each character the model looks up the embedding, runs the GRU one timestep with the embedding as input, and applies the dense layer to generate logits predicting the log-likelihood of the next character:
 
 ![alt text](https://github.com/MedentzidisCharalampos/Text-Generation-with-a-Recurrent-Neural-Network/blob/main/model_architecture.png)
+
+# Train the model
+
+The problem can be treated as a standard classification problem. Given the previous RNN state, and the input this time step, predict the class of the next character.
+Attach an optimizer, and a loss function: The standard tf.keras.losses.sparse_categorical_crossentropy loss function works in this case because it is applied across the last dimension of the predictions.  
+Configure the training procedure using the tf.keras.Model.compile method. Use tf.keras.optimizers.Adam with default arguments and the loss function.
+
