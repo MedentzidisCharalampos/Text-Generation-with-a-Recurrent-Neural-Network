@@ -85,3 +85,12 @@ Use a tf.keras.callbacks.ModelCheckpoint to ensure that checkpoints are saved du
 Execute the training:
 
 To keep training time reasonable, use 10 epochs to train the model.
+
+# Generate text
+Restore the latest checkpoint:  
+
+To keep this prediction step simple, use a batch size of 1.
+
+Because of the way the RNN state is passed from timestep to timestep, the model only accepts a fixed batch size once built.
+
+To run the model with a different batch_size, you need to rebuild the model and restore the weights from the checkpoint.
