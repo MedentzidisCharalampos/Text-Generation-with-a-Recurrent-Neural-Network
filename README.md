@@ -40,9 +40,20 @@ were she such a case as fills m
 2. The model is character-based. When training started, the model did not know how to spell an English word, or that words were even a unit of text.
 
 3. The structure of the output resembles a play—blocks of text generally begin with a speaker name, in all capital letters similar to the dataset.
-
+T
 4. As demonstrated below, the model is trained on small batches of text (100 characters each), and is still able to generate a longer sequence of text with coherent structure.
 
-
+# Process the Text
+1. Vectorize the text: 
+  Before training, we need to map strings to a numerical representation. Create two lookup tables: one mapping characters to numbers, and another for numbers to characters.
+2. Create training examples and targets
+  Next divide the text into example sequences. 
+  Each input sequence will contain seq_length characters from the text.
+  For each input sequence, the corresponding targets contain the same length of text, except shifted one character to the right.
+  So break the text into chunks of seq_length+1. 
+  
+  For example, say seq_length is 4 and our text is "Hello". The input sequence would be "Hell", and the target sequence "ello".
+  
+  
 
 
