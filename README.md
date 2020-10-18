@@ -69,7 +69,19 @@ For each character the model looks up the embedding, runs the GRU one timestep w
 
 # Train the model
 
-The problem can be treated as a standard classification problem. Given the previous RNN state, and the input this time step, predict the class of the next character.
-Attach an optimizer, and a loss function: The standard tf.keras.losses.sparse_categorical_crossentropy loss function works in this case because it is applied across the last dimension of the predictions.  
-Configure the training procedure using the tf.keras.Model.compile method. Use tf.keras.optimizers.Adam with default arguments and the loss function.
+The problem can be treated as a standard classification problem.     
+Given the previous RNN state, and the input this time step, predict the class of the next character.
 
+Attach an optimizer, and a loss function: 
+
+The standard tf.keras.losses.sparse_categorical_crossentropy loss function works in this case because it is applied across the last dimension of the predictions.    
+Configure the training procedure using the tf.keras.Model.compile method.  
+Use tf.keras.optimizers.Adam with default arguments and the loss function.
+
+Configure checkpoints:
+
+Use a tf.keras.callbacks.ModelCheckpoint to ensure that checkpoints are saved during training.
+
+Execute the training:
+
+To keep training time reasonable, use 10 epochs to train the model.
