@@ -42,3 +42,7 @@ were she such a case as fills m
 3. The structure of the output resembles a play—blocks of text generally begin with a speaker name, in all capital letters similar to the dataset.
 
 4. As demonstrated below, the model is trained on small batches of text (100 characters each), and is still able to generate a longer sequence of text with coherent structure.
+
+
+
+
