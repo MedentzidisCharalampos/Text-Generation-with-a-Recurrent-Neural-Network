@@ -51,10 +51,18 @@ T
   Each input sequence will contain seq_length characters from the text.
   For each input sequence, the corresponding targets contain the same length of text, except shifted one character to the right.
   So break the text into chunks of seq_length+1. 
-  
   For example, say seq_length is 4 and our text is "Hello". The input sequence would be "Hell", and the target sequence "ello".
   
 3. Create training batches:  
   Before feeding this data into the model, we need to shuffle the data and pack it into batches.
 
+# Build The Model
+Use tf.keras.Sequential to define the model. 
 
+1. tf.keras.layers.Embedding: The input layer. A trainable lookup table that will map the numbers of each character to a vector with embedding_dim dimensions;
+2. tf.keras.layers.GRU: A type of RNN with size units=rnn_units (You can also use an LSTM layer here.)
+3. tf.keras.layers.Dense: The output layer, with vocab_size outputs.
+
+For each character the model looks up the embedding, runs the GRU one timestep with the embedding as input, and applies the dense layer to generate logits predicting the log-likelihood of the next character:
+
+![alt text](https://github.com/MedentzidisCharalampos/Text-Generation-with-a-Recurrent-Neural-Network/blob/main/model_architecture.png)
