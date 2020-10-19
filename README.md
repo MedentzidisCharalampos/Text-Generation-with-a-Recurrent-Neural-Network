@@ -89,8 +89,22 @@ To keep training time reasonable, use 10 epochs to train the model.
 # Generate text
 Restore the latest checkpoint:  
 
-To keep this prediction step simple, use a batch size of 1.
+1. To keep this prediction step simple, use a batch size of 1.
 
-Because of the way the RNN state is passed from timestep to timestep, the model only accepts a fixed batch size once built.
+2. Because of the way the RNN state is passed from timestep to timestep, the model only accepts a fixed batch size once built.
 
-To run the model with a different batch_size, you need to rebuild the model and restore the weights from the checkpoint.
+3. To run the model with a different batch_size, you need to rebuild the model and restore the weights from the checkpoint.
+
+# The prediction loop
+
+The following code block generates the text:
+
+1. Begin by choosing a start string, initializing the RNN state and setting the number of characters to generate.
+
+2. Get the prediction distribution of the next character using the start string and the RNN state.
+
+3. Then, use a categorical distribution to calculate the index of the predicted character. Use this predicted character as our next input to the model.
+
+4. The RNN state returned by the model is fed back into the model so that it now has more context, instead of only one character. After predicting the next character, the modified RNN states are again fed back into the model, which is how it learns as it gets more context from the previously predicted characters.
+
+![alt text](https://github.com/MedentzidisCharalampos/Text-Generation-with-a-Recurrent-Neural-Network/blob/main/prediction_loop.png)
